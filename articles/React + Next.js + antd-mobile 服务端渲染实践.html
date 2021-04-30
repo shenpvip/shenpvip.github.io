@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>React + Next.js + antd-mobile 服务端渲染实践 | ROC&#39;S BLOG</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="ROC'S BLOG">
+    <meta name="author" content="Roc">
+    <meta name="description" content="Tomorrow is another day" />
+    <meta name="keywords" content="" />
+
+    <!-- Site Verification -->
+    <meta name="google-site-verification" content="rLdwH5LrBNt776dG8hn0-hKgHw1zRHW0xNcKVgGrAdw" />
+    <meta name="baidu-site-verification" content="K92LESletm" />
+    <meta name="360-site-verification" content="70d16b5dd18da9212ce9013090edc367" />
+    <meta name="msvalidate.01" content="BCF1684AC274828EE2C1EE2058ECACF1" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="ROC&#39;S BLOG" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+  <!-- Analytics -->
+  
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-109066492-1', 'auto');ga('send', 'pageview');
+</script>
+  
+  
+      <script>
+    var _hmt = _hmt || [];
+    (function() {var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?5e636182d74fd9ac48aefe62cf361064';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/ES6/" class="animsition-link">ES6<small>(6)</small></a></li>
+				    
+				    <li><a href="/categories/blog/" class="animsition-link">blog<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/javascript/" class="animsition-link">javascript<small>(5)</small></a></li>
+				    
+				    <li><a href="/categories/nodejs/" class="animsition-link">nodejs<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/react/" class="animsition-link">react<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/日志/" class="animsition-link">日志<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/移动端/" class="animsition-link">移动端<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/笔记/" class="animsition-link">笔记<small>(10)</small></a></li>
+				    
+				</ul>
+        	</li>
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">tags<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                        
+                    <li><a href="/tags/ES6/" class="animsition-link">ES6<small>(8)</small></a></li>
+                    
+                    <li><a href="/tags/Github-Actions/" class="animsition-link">Github Actions<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/GraphQL/" class="animsition-link">GraphQL<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/Taro-1/" class="animsition-link">Taro 1<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/Taro-3/" class="animsition-link">Taro 3<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/TypeScript/" class="animsition-link">TypeScript<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/antd-mobile/" class="animsition-link">antd-mobile<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/apply/" class="animsition-link">apply<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/bind/" class="animsition-link">bind<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/call/" class="animsition-link">call<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/callee/" class="animsition-link">callee<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/caller/" class="animsition-link">caller<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/centos7/" class="animsition-link">centos7<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/git/" class="animsition-link">git<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/git操作/" class="animsition-link">git操作<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/hexo/" class="animsition-link">hexo<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/linux/" class="animsition-link">linux<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/next/" class="animsition-link">next<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/nodejs/" class="animsition-link">nodejs<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/npm/" class="animsition-link">npm<small>(2)</small></a></li>
+                    
+                    <li><a href="/tags/promise/" class="animsition-link">promise<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/react/" class="animsition-link">react<small>(3)</small></a></li>
+                    
+                    <li><a href="/tags/react-lazy/" class="animsition-link">react.lazy<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/rem布局/" class="animsition-link">rem布局<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/rest运算符/" class="animsition-link">rest运算符<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/setTimeout/" class="animsition-link">setTimeout()<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/vue/" class="animsition-link">vue<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/主题/" class="animsition-link">主题<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/单例模式/" class="animsition-link">单例模式<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/变量的结构赋值/" class="animsition-link">变量的结构赋值<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/字符串/" class="animsition-link">字符串<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/安卓调试/" class="animsition-link">安卓调试<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/对象/" class="animsition-link">对象<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/小程序开发/" class="animsition-link">小程序开发<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/循环/" class="animsition-link">循环<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/微信支付/" class="animsition-link">微信支付<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/心情/" class="animsition-link">心情<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/手写题/" class="animsition-link">手写题<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/扩展运算符/" class="animsition-link">扩展运算符<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/数组/" class="animsition-link">数组<small>(2)</small></a></li>
+                    
+                    <li><a href="/tags/树莓派/" class="animsition-link">树莓派<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/模块化/" class="animsition-link">模块化<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/移动端/" class="animsition-link">移动端<small>(2)</small></a></li>
+                    
+                    <li><a href="/tags/组件模式/" class="animsition-link">组件模式<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/背景/" class="animsition-link">背景<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/设计模式/" class="animsition-link">设计模式<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/遍历/" class="animsition-link">遍历<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/面试/" class="animsition-link">面试<small>(1)</small></a></li>
+                    
+                </ul>
+            </li>
+            
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <!-- <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li> -->
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.jpg" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">ROC'S BLOG</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/shenpvip" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li><a href="http://weibo.com/shenpvip" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2018-12-02T20:26:52.000Z" itemprop="datePublished">
+          2018-12-02
+      </time>
+    
+    
+    | 
+    <a href='/tags/react/'>react</a>,
+    
+    <a href='/tags/next/'>next</a>,
+    
+    <a href='/tags/antd-mobile/'>antd-mobile</a>
+    
+    
+</span>
+                <h1>React + Next.js + antd-mobile 服务端渲染实践</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h3 id="服务端渲染"><a href="#服务端渲染" class="headerlink" title="服务端渲染"></a>服务端渲染</h3><p>服务端渲染，是指页面的渲染和生成由服务器来完成，并将渲染好的页面返回客户端。而客户端渲染是页面的生成和数据的渲染过程是在客户端（浏览器或APP）完成。</p>
+<h3 id="Next-js-简介"><a href="#Next-js-简介" class="headerlink" title="Next.js 简介"></a>Next.js 简介</h3><p>Next.js是一个基于React的一个服务端渲染简约框架。它使用React语法，可以很好的实现代码的模块化，有利于代码的开发和维护。</p>
+<h3 id="Next-js主要功能"><a href="#Next-js主要功能" class="headerlink" title="Next.js主要功能"></a>Next.js主要功能</h3><ul>
+<li>热代码更新: 检测磁盘文件更新即更新整个页面</li>
+<li>自动路由: 映射文件系统路径至任意URL地址，无需任何配置</li>
+<li>单文件组件: 使用自身集成的styled-jsx，可以给组件直接添加样式</li>
+<li>服务端渲染: 发送html之前，你可以选择性在服务端渲染React组件</li>
+<li>生态系统兼容: next.js与js、node、react生态系统协作良好</li>
+<li>自动代码分割: 页面只会加载需要的js文件资源</li>
+<li>预读取: Link链接组件，支持prefetch属性用于后台自动预读取页面资源，包括代码分割丢失的代码</li>
+<li>动态组件: 支持动态导入JS文件和React组件</li>
+<li>静态输出: 使用next export命令，可以输出APP为静态站点</li>
+</ul>
+<h3 id="安装Next-js"><a href="#安装Next-js" class="headerlink" title="安装Next.js"></a>安装Next.js</h3><pre><code>npm install --save next react react-dom
+</code></pre><p>创建package.json文件</p>
+<pre><code>{
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;next&quot;
+  }
+}
+</code></pre><p>创建空pages目录，执行npm run dev命令，next.js会在localhost:3000启动本地服务。</p>
+<p>默认首页指向404页面，next.js也可以处理500状态。</p>
+<h3 id="创建页面"><a href="#创建页面" class="headerlink" title="创建页面"></a>创建页面</h3><p>在pages目录中创建index.js, 写一个简单React纯函数组件</p>
+<pre><code>export default () =&gt; (
+  &lt;div&gt;
+    &lt;h1&gt;Hello World!&lt;/h1&gt;
+  &lt;/div&gt;
+)
+</code></pre><p>此时在localhost:3000，可以看到Hello World！页面<br>如果访问服务端，组件会自动加载。</p>
+<p>next.js使用基于文件系统结构的声明式页面结构，文件系统路径就是页面API。</p>
+<p>打开页面源码，查看View-&gt;Developer-&gt;View Source, 页面源码显示的是组件生成由服务端渲染的html元素。</p>
+<h3 id="多页面创建"><a href="#多页面创建" class="headerlink" title="多页面创建"></a>多页面创建</h3><p>在 pages 目录下创建文件 pages/about.js :</p>
+<pre><code>export default () =&gt; (
+  &lt;div&gt;
+    &lt;p&gt;This is the about page&lt;/p&gt;
+  &lt;/div&gt;
+)
+</code></pre><h3 id="热刷新"><a href="#热刷新" class="headerlink" title="热刷新"></a>热刷新</h3><p>无须手动重启npm进程，next.js会在后台自动完成。</p>
+<h3 id="Link组件"><a href="#Link组件" class="headerlink" title="Link组件"></a>Link组件</h3><p>服务端渲染在首页面加载会十分方便，但当导航至网站内部页面时，客户端渲染是加速页面加载的关键，能提升用户体验。</p>
+<p>Next.js提供Link组件用来创建链接，可以上述示例中创建链接：</p>
+<pre><code>import Link from &apos;next/link&apos;
+export default () =&gt; (
+  &lt;div&gt;
+    &lt;h1&gt;Hello World!&lt;/h1&gt;
+    &lt;Link href=&quot;/about&quot;&gt;
+      &lt;a&gt; About Page&lt;/a&gt;
+    &lt;/Link&gt;
+  &lt;/div&gt;
+)
+</code></pre><p>在浏览器中访问首页 <a href="http://localhost:3000" target="_blank" rel="noopener">http://localhost:3000</a> 时，点击 About Page即可跳转到about页面，点击浏览器返回按钮还可以返回到index页面。</p>
+<p>Link组件是通过location.history的浏览器API保存历史路由，所以，你可以通过浏览器左上角的前进和后退按钮来切换历史路由。而在开发过程中，你不需要再单独写客户端路由的配置。</p>
+<p>Link组件是React的高阶组件的实现，不能对它进行样式的设置，它只是起到路由的跳转功能，但是它的复用性强，只要包含一个能触发onClick事件的组件即可。</p>
+<h3 id="动态页面"><a href="#动态页面" class="headerlink" title="动态页面"></a>动态页面</h3><p>博客是next.js非常好的案例。动态页面没有固定内容，会基于某些参数渲染部分数据。</p>
+<pre><code>import Link from &apos;next/link&apos;
+const Post = (props) =&gt; (
+  &lt;li&gt;
+    &lt;Link href={`/post?title=${props.title}`}&gt;
+      &lt;a&gt;{props.title}&lt;/a&gt;
+    &lt;/Link&gt;
+  &lt;/li&gt;
+)
+export default () =&gt; (
+  &lt;div&gt;
+    &lt;h2&gt;My blog&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;Post title=&quot;Yet another post&quot; /&gt;
+      &lt;Post title=&quot;Second post&quot; /&gt;
+      &lt;Post title=&quot;Hello, world!&quot; /&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+)
+</code></pre><p>组件会创建一系列的文章链接，文章标题附加查询参数。</p>
+<p>可以在page目录中创建post.js文件:</p>
+<pre><code>export default (props) =&gt; (
+  &lt;h1&gt;{props.url.query.title}&lt;/h1&gt;
+)
+</code></pre><h3 id="获取数据以及组件生命周期"><a href="#获取数据以及组件生命周期" class="headerlink" title="获取数据以及组件生命周期"></a>获取数据以及组件生命周期</h3><p>Next.js 在 React 的基础上为组件添加了一个新的特性： getInitialProps （有点像是getInitialState），它用于获取并处理组件的属性，返回组件的默认属性。我们可以在改方法中请求数据，获取页面需要的数据并渲染返回给前端页面。</p>
+<p>安装发送 fetch 请求的插件 isomorphic-unfetch，当然你也可以使用 axios 等其他工具。</p>
+<pre><code>npm install --save isomorphic-unfetch
+</code></pre><p>然后修改 pages/index.js 里的内容，换成下面这样：</p>
+<pre><code>import Layout from &apos;../components/Layout&apos;
+import { Button } from &apos;antd-mobile&apos;
+import Link from &apos;next/link&apos;
+import fetch from &apos;isomorphic-unfetch&apos;
+
+const Index = props =&gt; (
+  &lt;Layout title=&quot;Index&quot;&gt;
+    &lt;ul&gt;
+      {props.shows.map(({show}) =&gt; (
+        &lt;li key={show.id}&gt;
+          &lt;Link as={`/p/${show.id}`} href={`/post?id=${show.id}`}&gt;
+            &lt;a&gt;{show.name}&lt;/a&gt;
+          &lt;/Link&gt;
+        &lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+    &lt;Link href=&quot;/about&quot;&gt;
+      &lt;Button&gt;Go to About&lt;/Button&gt;
+    &lt;/Link&gt;
+  &lt;/Layout&gt;
+)
+
+Index.getInitialProps = async function() {
+  const res = await fetch(&apos;https://api.tvmaze.com/search/shows?q=batman&apos;)
+  const data = await res.json()
+
+  console.log(`服务端获取数据！`)
+
+  return {
+    shows: data
+  }
+}
+
+export default Index
+</code></pre><p>在 getInitialProps 中使用了 async 和 await 来处理异步请求，并将取到的数据当做一个属性赋给页面，页面拿到这个属性的值后会用于页面的初始化渲染。</p>
+<h3 id="使用样式"><a href="#使用样式" class="headerlink" title="使用样式"></a>使用样式</h3><p>next.js默认支持styled-jsx, 生成独立作用域的 CSS，当前组件的样式只在组件内部生效，对子组件也没有影响。</p>
+<p>如果想对子组件也生效，可以给style标签添加global属性。</p>
+<p>对上述代码添加样式，放在组件内部即可：</p>
+<pre><code>&lt;style jsx&gt;{`
+  h1, a {
+    font-family: &quot;Arial&quot;;
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    list-style: none;
+    margin: 5px 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: blue;
+  }
+
+  a:hover {
+    opacity: 0.6;
+  }
+`}&lt;/style&gt;
+</code></pre><h3 id="添加antd-mobile"><a href="#添加antd-mobile" class="headerlink" title="添加antd-mobile"></a>添加antd-mobile</h3><p>首先安装antd-mobile和next解析外部css文件的插件@zeit/next-css</p>
+<pre><code>npm install --save antd-mobile @zeit/next-css
+</code></pre><p>安装按需加载插件</p>
+<pre><code>npm install --save babel-plugin-import
+</code></pre><p>添加.babelrc文件，并加入如下代码：</p>
+<pre><code>{
+  &quot;presets&quot;: [&quot;next/babel&quot;],
+  &quot;plugins&quot;: [
+    [
+      &quot;import&quot;,
+      {
+        &quot;libraryName&quot;: &quot;antd-mobile&quot;,
+        &quot;style&quot;: &quot;css&quot;
+      }
+    ]
+  ]
+}
+</code></pre><p>添加next.config.js文件，可以在该文件内自定义next的配置，比如扩展webpack</p>
+<p>注意：next.config.js是一个 Node.js 模块，不是一个 JSON 文件，可以用于 Next 启动服务已经构建阶段，但是不作用于浏览器端。</p>
+<p>添加如下代码：</p>
+<pre><code>const withCSS = require(&apos;@zeit/next-css&apos;)
+
+// fix: prevents error when .css files are required by node
+if (typeof require !== &apos;undefined&apos;) {
+  // eslint-disable-next-line
+  require.extensions[&apos;.css&apos;] = (file) =&gt; {}
+}
+
+module.exports = withCSS()
+</code></pre><p>这样，我们就可以在组件中使用antd-mobile框架了</p>
+<p>更多代码请参见<a href="https://github.com/NeuronGenius/UEX.Blog/tree/master/examples/next-demo" target="_blank" rel="noopener">example</a></p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/articles/React-lazy懒加载组件.html" style="float: left;">
+        ← React.lazy懒加载组件
+    </a>
+    
+    
+    <a class="pull-right" href="/articles/React常用组件模式.html">
+        React常用组件模式 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      <!-- ============================ Footer =========================== -->
+
+<footer>
+  <div class="container">
+    <div class="copy">
+      <p>
+        &copy; 2014
+        <script>
+          new Date().getFullYear() > 2010 &&
+            document.write('-' + new Date().getFullYear())
+        </script>
+        , Content By Roc. All Rights Reserved.
+      </p>
+      <!-- <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p> -->
+      
+      <script
+        async
+        src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+      ></script>
+      <p>
+        <span id="busuanzi_container_site_uv"
+          >欢迎你，Roc的第<span id="busuanzi_value_site_uv"></span>位朋友！</span
+        >
+        <span id="busuanzi_container_site_pv"
+          >网站总访问量<span id="busuanzi_value_site_pv"></span>人次</span
+        >
+      </p>
+      
+    </div>
+    <div class="social">
+      <ul>
+        
+        <li>
+          <a href="https://github.com/shenpvip" title="Github" target="_blank"
+            ><i class="icon-github"></i></a
+          >&nbsp;
+        </li>
+            
+        <li>
+          <a href="http://weibo.com/shenpvip" title="Sina-Weibo" target="_blank"
+            ><i class="icon-sina-weibo"></i></a
+          >&nbsp;
+        </li>
+        
+      </ul>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

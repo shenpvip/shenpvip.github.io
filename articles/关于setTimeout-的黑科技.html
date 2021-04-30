@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>关于setTimeout()的黑科技 | ROC&#39;S BLOG</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="ROC'S BLOG">
+    <meta name="author" content="Roc">
+    <meta name="description" content="Tomorrow is another day" />
+    <meta name="keywords" content="" />
+
+    <!-- Site Verification -->
+    <meta name="google-site-verification" content="rLdwH5LrBNt776dG8hn0-hKgHw1zRHW0xNcKVgGrAdw" />
+    <meta name="baidu-site-verification" content="K92LESletm" />
+    <meta name="360-site-verification" content="70d16b5dd18da9212ce9013090edc367" />
+    <meta name="msvalidate.01" content="BCF1684AC274828EE2C1EE2058ECACF1" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="ROC&#39;S BLOG" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+  <!-- Analytics -->
+  
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-109066492-1', 'auto');ga('send', 'pageview');
+</script>
+  
+  
+      <script>
+    var _hmt = _hmt || [];
+    (function() {var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?5e636182d74fd9ac48aefe62cf361064';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/ES6/" class="animsition-link">ES6<small>(6)</small></a></li>
+				    
+				    <li><a href="/categories/blog/" class="animsition-link">blog<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/javascript/" class="animsition-link">javascript<small>(5)</small></a></li>
+				    
+				    <li><a href="/categories/nodejs/" class="animsition-link">nodejs<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/react/" class="animsition-link">react<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/日志/" class="animsition-link">日志<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/移动端/" class="animsition-link">移动端<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/笔记/" class="animsition-link">笔记<small>(10)</small></a></li>
+				    
+				</ul>
+        	</li>
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">tags<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                        
+                    <li><a href="/tags/ES6/" class="animsition-link">ES6<small>(8)</small></a></li>
+                    
+                    <li><a href="/tags/Github-Actions/" class="animsition-link">Github Actions<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/GraphQL/" class="animsition-link">GraphQL<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/Taro-1/" class="animsition-link">Taro 1<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/Taro-3/" class="animsition-link">Taro 3<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/TypeScript/" class="animsition-link">TypeScript<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/antd-mobile/" class="animsition-link">antd-mobile<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/apply/" class="animsition-link">apply<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/bind/" class="animsition-link">bind<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/call/" class="animsition-link">call<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/callee/" class="animsition-link">callee<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/caller/" class="animsition-link">caller<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/centos7/" class="animsition-link">centos7<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/git/" class="animsition-link">git<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/git操作/" class="animsition-link">git操作<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/hexo/" class="animsition-link">hexo<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/linux/" class="animsition-link">linux<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/next/" class="animsition-link">next<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/nodejs/" class="animsition-link">nodejs<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/npm/" class="animsition-link">npm<small>(2)</small></a></li>
+                    
+                    <li><a href="/tags/promise/" class="animsition-link">promise<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/react/" class="animsition-link">react<small>(3)</small></a></li>
+                    
+                    <li><a href="/tags/react-lazy/" class="animsition-link">react.lazy<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/rem布局/" class="animsition-link">rem布局<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/rest运算符/" class="animsition-link">rest运算符<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/setTimeout/" class="animsition-link">setTimeout()<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/vue/" class="animsition-link">vue<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/主题/" class="animsition-link">主题<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/单例模式/" class="animsition-link">单例模式<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/变量的结构赋值/" class="animsition-link">变量的结构赋值<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/字符串/" class="animsition-link">字符串<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/安卓调试/" class="animsition-link">安卓调试<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/对象/" class="animsition-link">对象<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/小程序开发/" class="animsition-link">小程序开发<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/循环/" class="animsition-link">循环<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/微信支付/" class="animsition-link">微信支付<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/心情/" class="animsition-link">心情<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/手写题/" class="animsition-link">手写题<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/扩展运算符/" class="animsition-link">扩展运算符<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/数组/" class="animsition-link">数组<small>(2)</small></a></li>
+                    
+                    <li><a href="/tags/树莓派/" class="animsition-link">树莓派<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/模块化/" class="animsition-link">模块化<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/移动端/" class="animsition-link">移动端<small>(2)</small></a></li>
+                    
+                    <li><a href="/tags/组件模式/" class="animsition-link">组件模式<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/背景/" class="animsition-link">背景<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/设计模式/" class="animsition-link">设计模式<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/遍历/" class="animsition-link">遍历<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/面试/" class="animsition-link">面试<small>(1)</small></a></li>
+                    
+                </ul>
+            </li>
+            
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <!-- <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li> -->
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.jpg" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">ROC'S BLOG</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/shenpvip" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li><a href="http://weibo.com/shenpvip" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2017-12-18T10:28:33.000Z" itemprop="datePublished">
+          2017-12-18
+      </time>
+    
+    
+    | 
+    <a href='/tags/setTimeout/'>setTimeout()</a>
+    
+    
+</span>
+                <h1>关于setTimeout()的黑科技</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<blockquote>
+<p>之前对setTimeout()的理解很浅显，在设定的时间后执行任务。偶尔也遇到过某些任务不执行时，使用setTimeout()就能解决，但是一直没有理解其中的原理，最近看到一篇文章<a href="http://caibaojian.com/about-settimeout.html" target="_blank" rel="noopener">《关于setTimeout()你所不知道的地方》</a>，梳理一下关于setTimeout()的知识点。</p>
+</blockquote>
+<h3 id="一、setTimeout基础用法"><a href="#一、setTimeout基础用法" class="headerlink" title="一、setTimeout基础用法"></a>一、setTimeout基础用法</h3><p>setTimeout函数用来指定某个函数或某段代码，在多少毫秒之后执行。它返回一个整数，表示定时器的编号，以后可以用来取消这个定时器。</p>
+<p><code>var timerId = setTimeout(func|code, delay)</code></p>
+<p>setTimeout函数接受两个参数，第一个参数func|code是将要推迟执行的函数名或者一段代码，第二个参数delay是推迟执行的毫秒数。</p>
+<pre><code>console.log(1);
+setTimeout(&apos;console.log(2)&apos;,1000);
+console.log(3);
+</code></pre><p>上面代码的运行结果是1,3,2，因为setTimeout指定第二行语句推迟1000毫秒再执行。</p>
+<h3 id="二、setTimeout参数使用"><a href="#二、setTimeout参数使用" class="headerlink" title="二、setTimeout参数使用"></a>二、setTimeout参数使用</h3><p>向setTimeout()传递一个字符串时，javascript引擎会先使用eval函数，将字符串转换成为代码，然后再执行，一方面出于安全考虑，另一方面为了便于引擎优化代码，一般总是采用函数名形式。</p>
+<pre><code>// 推荐
+window.setTimeout(function() {
+    alert(&quot;Hello World!&quot;);
+}, 500);
+
+// 不推荐
+window.setTimeout(&quot;alert(&quot;Hello World!&quot;);&quot;, 500);
+</code></pre><blockquote>
+<p><strong>注意：这里不推荐将要延迟执行的代码以字符串的形式传入setTimeout(),最好以匿名函数的形式传入。</strong></p>
+</blockquote>
+<h3 id="三、对this指向的影响"><a href="#三、对this指向的影响" class="headerlink" title="三、对this指向的影响"></a>三、对this指向的影响</h3><p>setTimeout()回调函数中的this</p>
+<p>如果被setTimeout推迟执行的回调函数是某个对象的方法，那么该方法中的this关键字将指向全局环境，而不是定义时所在的那个对象。</p>
+<pre><code>var x = 1;
+var test = {
+    x: 2,
+    app: function(){
+        console.log(this.x);
+    }
+};
+setTimeout(test.app,1000);// 1
+</code></pre><p>上面代码输出的是1，而不是2，这表示test.app的this所指向的已经不是o，而是全局环境了。</p>
+<p>再看一个不容易发现错误的例子。</p>
+<pre><code>function User(login) {
+    this.login = login;
+    this.sayHi = function() {
+        console.log(this.login);
+    }
+}
+var user = new User(&apos;hello world&apos;);
+setTimeout(user.sayHi, 1000);
+</code></pre><p>上面代码只会显示undefined，因为等到user.sayHi执行时，它是在全局对象中执行，所以this.login取不到值。</p>
+<p>为了防止出现这个问题，一种解决方法是将user.sayHi放在匿名函数中执行。</p>
+<pre><code>setTimeout(function() {
+    user.sayHi();
+}, 1000);
+</code></pre><p>上面代码中，sayHi是在user作用域内执行，而不是在全局作用域内执行，所以能够显示正确的值。</p>
+<p>另一种解决方法是，使用bind方法，将绑定sayHi绑定在user上面。</p>
+<pre><code>setTimeout(user.sayHi.bind(user), 1000);
+</code></pre><h3 id="四、setTimeout运行机制"><a href="#四、setTimeout运行机制" class="headerlink" title="四、setTimeout运行机制"></a>四、setTimeout运行机制</h3><p>setTimeout和setInterval的运行机制是，将指定的代码移出本次执行，等到下一轮Event Loop时，再检查是否到了指定时间。如果到了，就执行对应的代码；如果不到，就等到再下一轮Event Loop时重新判断。这意味着，setTimeout指定的代码，必须等到本次执行的所有代码都执行完，才会执行。</p>
+<p>每一轮Event Loop时，都会将“任务队列”中需要执行的任务，一次执行完。setTimeout和setInterval都是把任务添加到“任务队列”的尾部。因此，它们实际上要等到当前脚本的所有同步任务执行完，然后再等到本次Event Loop的“任务队列”的所有任务执行完，才会开始执行。由于前面的任务到底需要多少时间执行完，是不确定的，所以没有办法保证，setTimeout和setInterval指定的任务，一定会按照预定时间执行。</p>
+<pre><code>setTimeout(someTask,100);
+veryLongTask();
+</code></pre><p>上面代码的setTimeout，指定100毫秒以后运行一个任务。但是，如果后面立即运行的任务（当前脚本的同步任务）非常耗时，过了100毫秒还无法结束，那么被推迟运行的someTask就只有等着，等到前面的veryLongTask运行结束，才轮到它执行。</p>
+<pre><code>setTimeout(function() {
+  console.log(&quot;Timeout&quot;);
+}, 0);
+
+function a(x) {
+  console.log(&quot;a() 开始运行&quot;);
+  b(x);
+  console.log(&quot;a() 结束运行&quot;);
+}
+
+function b(y) {
+  console.log(&quot;b() 开始运行&quot;);
+  console.log(&quot;传入的值为&quot; + y);
+  console.log(&quot;b() 结束运行&quot;);
+}
+
+console.log(&quot;当前任务开始&quot;);
+a(42);
+console.log(&quot;当前任务结束&quot;);
+
+// 当前任务开始
+// a() 开始运行
+// b() 开始运行
+// 传入的值为42
+// b() 结束运行
+// a() 结束运行
+// 当前任务结束
+// Timeout
+</code></pre><p>上面代码说明，setTimeout(f,0)必须要等到当前脚本的所有同步任务结束后才会执行。</p>
+<h3 id="五、setTimeout的应用"><a href="#五、setTimeout的应用" class="headerlink" title="五、setTimeout的应用"></a>五、setTimeout的应用</h3><h4 id="5-1调整事件的发生顺序"><a href="#5-1调整事件的发生顺序" class="headerlink" title="5.1调整事件的发生顺序"></a>5.1调整事件的发生顺序</h4><p>setTimeout(f,0)有几个非常重要的用途。它的一大应用是，可以调整事件的发生顺序。比如，网页开发中，某个事件先发生在子元素，然后冒泡到父元素，即子元素的事件回调函数，会早于父元素的事件回调函数触发。如果，我们先让父元素的事件回调函数先发生，就要用到setTimeout(f, 0)。</p>
+<pre><code>var input = document.getElementsByTagName(&apos;input[type=button]&apos;)[0];
+
+input.onclick = function A() {
+  setTimeout(function B() {
+    input.value +=&apos; input&apos;;
+  }, 0)
+};
+
+document.body.onclick = function C() {
+  input.value += &apos; body&apos;
+};
+</code></pre><p>上面代码在点击按钮后，先触发回调函数A，然后触发函数C。在函数A中，setTimeout将函数B推迟到下一轮Loop执行，这样就起到了，先触发父元素的回调函数C的目的了。</p>
+<p>用户自定义的回调函数，通常在浏览器的默认动作之前触发。比如，用户在输入框输入文本，keypress事件会在浏览器接收文本之前触发。因此，下面的回调函数是达不到目的的。</p>
+<pre><code>document.getElementById(&apos;input-box&apos;).onkeypress = function(event) {
+  this.value = this.value.toUpperCase();
+}
+</code></pre><p>上面代码想在用户输入文本后，立即将字符转为大写。但是实际上，它只能将上一个字符转为大写，因为浏览器此时还没接收到文本，所以this.value取不到最新输入的那个字符。只有用setTimeout改写，上面的代码才能发挥作用。</p>
+<pre><code>document.getElementById(&apos;my-ok&apos;).onkeypress = function() {
+  var self = this;
+  setTimeout(function() {
+    self.value = self.value.toUpperCase();
+  }, 0);
+}
+</code></pre><p>上面代码将代码放入setTimeout之中，就能使得它在浏览器接收到文本之后触发;</p>
+<h4 id="5-2分割耗时"><a href="#5-2分割耗时" class="headerlink" title="5.2分割耗时"></a>5.2分割耗时</h4><p>众所周知javascript是单线程的，特点就是容易出现阻塞。如果一段程序处理时间很长，很容易导致整个页面hold住。什么交互都处理不了怎么办？</p>
+<blockquote>
+<p>简化复杂度？复杂逻辑后端处理？html5的多线程？……</p>
+</blockquote>
+<p>上面都是ok的做法，但是setTimeout也是处理这种问题的一把好手。setTimeout一个很关键的用法就是分片，如果一段程序过大，我们可以拆分成若干细小的块。由于setTimeout(f,0)实际上意味着，将任务放到浏览器最早可得的空闲时段执行，所以那些计算量大、耗时长的任务，常常会被放到几个小部分，分别放到setTimeout(f,0)里面执行(分片塞入队列)，这样即使在复杂程序没有处理完时，我们操作页面，也是能得到即时响应的。其实就是将交互插入到了复杂程序中执行。</p>
+<pre><code>var div = document.getElementsByTagName(&apos;div&apos;)[0];
+
+// 写法一
+for(var i=0xA00000;i&lt;0xFFFFFF;i++) {
+  div.style.backgroundColor = &apos;#&apos;+i.toString(16);
+}
+
+// 写法二
+var timer;
+var i=0x100000;
+
+function func() {
+  timer = setTimeout(func, 0);
+  div.style.backgroundColor = &apos;#&apos;+i.toString(16);
+  if (i++ == 0xFFFFFF) clearInterval(timer);
+}
+
+timer = setTimeout(func, 0);
+</code></pre><p>上面代码有两种写法，都是改变一个网页元素的背景色。写法一会造成浏览器“堵塞”，而写法二就能就不会，这就是setTimeout(f,0)的好处。即：可利用setTimeout实现一种伪多线程的概念。</p>
+<h3 id="六-如何使用setTimeout"><a href="#六-如何使用setTimeout" class="headerlink" title="六, 如何使用setTimeout"></a>六, 如何使用setTimeout</h3><p>关于setTimeout()的使用远不止这些，但是足见其强大，那么问题来了，需要在项目中大量使用么？视个人和项目而定吧；如不能熟练掌握，不建议多用。毕竟在某些情景之下，setTimeout作为一个hack的方式而存在的。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/articles/module-exports与export-default的区别.html" style="float: left;">
+        ← module.exports与export default的区别
+    </a>
+    
+    
+    <a class="pull-right" href="/articles/git常用操作命令.html">
+        git常用操作命令 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      <!-- ============================ Footer =========================== -->
+
+<footer>
+  <div class="container">
+    <div class="copy">
+      <p>
+        &copy; 2014
+        <script>
+          new Date().getFullYear() > 2010 &&
+            document.write('-' + new Date().getFullYear())
+        </script>
+        , Content By Roc. All Rights Reserved.
+      </p>
+      <!-- <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p> -->
+      
+      <script
+        async
+        src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+      ></script>
+      <p>
+        <span id="busuanzi_container_site_uv"
+          >欢迎你，Roc的第<span id="busuanzi_value_site_uv"></span>位朋友！</span
+        >
+        <span id="busuanzi_container_site_pv"
+          >网站总访问量<span id="busuanzi_value_site_pv"></span>人次</span
+        >
+      </p>
+      
+    </div>
+    <div class="social">
+      <ul>
+        
+        <li>
+          <a href="https://github.com/shenpvip" title="Github" target="_blank"
+            ><i class="icon-github"></i></a
+          >&nbsp;
+        </li>
+            
+        <li>
+          <a href="http://weibo.com/shenpvip" title="Sina-Weibo" target="_blank"
+            ><i class="icon-sina-weibo"></i></a
+          >&nbsp;
+        </li>
+        
+      </ul>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

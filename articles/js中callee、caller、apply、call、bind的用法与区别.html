@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>js中callee、caller、apply、call、bind的用法与区别 | ROC&#39;S BLOG</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="ROC'S BLOG">
+    <meta name="author" content="Roc">
+    <meta name="description" content="Tomorrow is another day" />
+    <meta name="keywords" content="" />
+
+    <!-- Site Verification -->
+    <meta name="google-site-verification" content="rLdwH5LrBNt776dG8hn0-hKgHw1zRHW0xNcKVgGrAdw" />
+    <meta name="baidu-site-verification" content="K92LESletm" />
+    <meta name="360-site-verification" content="70d16b5dd18da9212ce9013090edc367" />
+    <meta name="msvalidate.01" content="BCF1684AC274828EE2C1EE2058ECACF1" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="ROC&#39;S BLOG" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+  <!-- Analytics -->
+  
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-109066492-1', 'auto');ga('send', 'pageview');
+</script>
+  
+  
+      <script>
+    var _hmt = _hmt || [];
+    (function() {var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?5e636182d74fd9ac48aefe62cf361064';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/ES6/" class="animsition-link">ES6<small>(6)</small></a></li>
+				    
+				    <li><a href="/categories/blog/" class="animsition-link">blog<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/javascript/" class="animsition-link">javascript<small>(5)</small></a></li>
+				    
+				    <li><a href="/categories/nodejs/" class="animsition-link">nodejs<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/react/" class="animsition-link">react<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/日志/" class="animsition-link">日志<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/移动端/" class="animsition-link">移动端<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/笔记/" class="animsition-link">笔记<small>(10)</small></a></li>
+				    
+				</ul>
+        	</li>
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">tags<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                        
+                    <li><a href="/tags/ES6/" class="animsition-link">ES6<small>(8)</small></a></li>
+                    
+                    <li><a href="/tags/Github-Actions/" class="animsition-link">Github Actions<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/GraphQL/" class="animsition-link">GraphQL<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/Taro-1/" class="animsition-link">Taro 1<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/Taro-3/" class="animsition-link">Taro 3<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/TypeScript/" class="animsition-link">TypeScript<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/antd-mobile/" class="animsition-link">antd-mobile<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/apply/" class="animsition-link">apply<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/bind/" class="animsition-link">bind<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/call/" class="animsition-link">call<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/callee/" class="animsition-link">callee<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/caller/" class="animsition-link">caller<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/centos7/" class="animsition-link">centos7<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/git/" class="animsition-link">git<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/git操作/" class="animsition-link">git操作<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/hexo/" class="animsition-link">hexo<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/linux/" class="animsition-link">linux<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/next/" class="animsition-link">next<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/nodejs/" class="animsition-link">nodejs<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/npm/" class="animsition-link">npm<small>(2)</small></a></li>
+                    
+                    <li><a href="/tags/promise/" class="animsition-link">promise<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/react/" class="animsition-link">react<small>(3)</small></a></li>
+                    
+                    <li><a href="/tags/react-lazy/" class="animsition-link">react.lazy<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/rem布局/" class="animsition-link">rem布局<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/rest运算符/" class="animsition-link">rest运算符<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/setTimeout/" class="animsition-link">setTimeout()<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/vue/" class="animsition-link">vue<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/主题/" class="animsition-link">主题<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/单例模式/" class="animsition-link">单例模式<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/变量的结构赋值/" class="animsition-link">变量的结构赋值<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/字符串/" class="animsition-link">字符串<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/安卓调试/" class="animsition-link">安卓调试<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/对象/" class="animsition-link">对象<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/小程序开发/" class="animsition-link">小程序开发<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/循环/" class="animsition-link">循环<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/微信支付/" class="animsition-link">微信支付<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/心情/" class="animsition-link">心情<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/手写题/" class="animsition-link">手写题<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/扩展运算符/" class="animsition-link">扩展运算符<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/数组/" class="animsition-link">数组<small>(2)</small></a></li>
+                    
+                    <li><a href="/tags/树莓派/" class="animsition-link">树莓派<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/模块化/" class="animsition-link">模块化<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/移动端/" class="animsition-link">移动端<small>(2)</small></a></li>
+                    
+                    <li><a href="/tags/组件模式/" class="animsition-link">组件模式<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/背景/" class="animsition-link">背景<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/设计模式/" class="animsition-link">设计模式<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/遍历/" class="animsition-link">遍历<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/面试/" class="animsition-link">面试<small>(1)</small></a></li>
+                    
+                </ul>
+            </li>
+            
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <!-- <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li> -->
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.jpg" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">ROC'S BLOG</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/shenpvip" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li><a href="http://weibo.com/shenpvip" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2018-11-11T15:40:43.000Z" itemprop="datePublished">
+          2018-11-11
+      </time>
+    
+    
+    | 
+    <a href='/tags/callee/'>callee</a>,
+    
+    <a href='/tags/caller/'>caller</a>,
+    
+    <a href='/tags/apply/'>apply</a>,
+    
+    <a href='/tags/call/'>call</a>,
+    
+    <a href='/tags/bind/'>bind</a>
+    
+    
+</span>
+                <h1>js中callee、caller、apply、call、bind的用法与区别</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<blockquote>
+<p>这五种方法经常用到，也经常看到，但是一直没有深入的理解它们直接的区别，为了不埋坑，重新学习总结一下。</p>
+</blockquote>
+<p>这五种方法大体可以分为两类，一类是callee,caller，另一类是call,apply,bind</p>
+<h3 id="callee"><a href="#callee" class="headerlink" title="callee"></a>callee</h3><p>返回正被执行的 Function 对象，也就是所指定的 Function 对象的正文。</p>
+<p>首先看一个斐波那契数列</p>
+<pre><code>function factorial(num){
+  if(num&lt;=1){
+    return 1
+  }else{
+    return num*factorial(num-1)
+  }
+}
+</code></pre><p>这么看很完美，但是有一个问题就是递归的时候函数的执行与函数名紧紧的耦合在一起了，例如:</p>
+<pre><code>var testFactorial = factorial
+factorial = function(){
+  return 0
+}
+testFactorial(5) //0
+</code></pre><p>之所以是0的原因是factorial这个变量指向了return 0的这个匿名函数。</p>
+<p>接下来我们用callee来对这个斐波那契数列进行解耦，目的很简单让函数里return指向自身</p>
+<pre><code>function factorial(num){
+  if(num&lt;=1){
+    return 1;
+  }else{
+    return num*arguments.callee(num-1)
+  }
+}
+
+var testFactorial = factorial;
+factorial = function(){
+  return 0;
+}
+console.log(testFactorial(5)); //120
+</code></pre><p>这样以来就解决了刚才的问题</p>
+<ul>
+<li>callee 属性的初始值就是正被执行的 Function 对象。</li>
+<li>callee 属性是 arguments 对象的一个成员，它表示对函数对象本身的引用，这有利于匿名函数的递归或者保证函数的封装性。</li>
+</ul>
+<h4 id="更多用法"><a href="#更多用法" class="headerlink" title="更多用法"></a>更多用法</h4><pre><code>// callee可以打印其本身
+function calleeDemo() {
+  alert(arguments.callee);
+}
+
+// 用于验证参数
+function calleeLengthDemo(arg1, arg2) {
+  if (arguments.length == arguments.callee.length) {
+    window.alert(&quot;验证形参和实参长度正确！&quot;);
+    return;
+  }else{
+    alert(&quot;实参长度：&quot; + arguments.length);
+    alert(&quot;形参长度： &quot; + arguments.callee.length);
+  }
+}
+
+// 递归计算
+var sum = function(n){
+  if (n &lt;= 0) {
+    return 1;
+  }else{
+    return n + arguments.callee(n - 1);
+  }
+}
+</code></pre><h3 id="caller"><a href="#caller" class="headerlink" title="caller"></a>caller</h3><p>返回一个对函数的引用，即调用了当前函数的函数体。</p>
+<p>functionName.caller ：functionName 对象是所执行函数的名称。</p>
+<h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>对于函数来说，caller 属性只有在函数执行时才有定义。 如果函数是由JavaScript 程序的顶层调用的，那么 caller 包含的就是 null 。如果在字符串上下文中使用 caller 属性，那么结果和 functionName.toString 一样，也就是说，显示的是函数的反编译文本。</p>
+<pre><code>function outer(){
+  inner();
+}
+function inner(){
+  console.log(inner.caller);
+}
+outer(); //显示outer的源代码
+</code></pre><p>因为outer()调用了inner()，所以inner.caller就指向outer()。为了实现松散的耦合也可以把inner.caller换成arguments.callee.caller。</p>
+<h3 id="call和apply"><a href="#call和apply" class="headerlink" title="call和apply"></a>call和apply</h3><p>call和apply作用完全是一样的，区别也仅在于接受参数的方式不同。</p>
+<p>apply第二个参数可以是Array的实例，也是一个argument对象，而call方法接收的第二个参数必须逐个列出来。 </p>
+<p>call和apply是改变函数执行的作用域的，说的通俗点就是改变函数体内this的指向</p>
+<pre><code>window.color = &apos;red&apos;
+var obj = {
+  color:&apos;blue&apos;
+}
+function sayColor(color){
+  console.log(this.color+&apos; param:&apos;+color)
+}
+sayColor.call(window,&apos;black&apos;); //red param:black
+sayColor.apply(window,[&apos;black&apos;]);//red param:black
+
+sayColor.call(obj,&apos;black&apos;) //blue param:black
+sayColor.apply(obj,[&apos;black&apos;) //blue param:black
+</code></pre><p>这里面color存在在两个环境里，分别全局环境中和对象obj中。使用了call或apply方法后，接收的第一个参数就是改变this的指向，将this指向参数传入的作用域中去，因此输出了不同环境下的color值。 </p>
+<p>使用apply和call的最大好处就是，对象不需要与方法有任何耦合关系。</p>
+<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><p>bind方法是ECMAscript5定义的一个方法。这个方法会创建一个函数的实例，其this值会被绑定到传给bind()函数的值。</p>
+<pre><code>window.color = &apos;red&apos;
+var obj = {
+  color:&apos;blue&apos;
+}
+function sayColor(color){
+  console.log(this.color)
+}
+var objSayColor = sayColor.bind(obj);
+objSayColor(); //blue
+</code></pre><p>bind方法会创建一个函数实例，因此需要有变量指向这个函数实例。使用bind的好处，除了能够解耦对象和方法外，在全局作用域中调用这个函数，也能够将this指向所对应的环境。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/articles/React常用组件模式.html" style="float: left;">
+        ← React常用组件模式
+    </a>
+    
+    
+    <a class="pull-right" href="/articles/关于Promise那些事.html">
+        关于Promise那些事 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      <!-- ============================ Footer =========================== -->
+
+<footer>
+  <div class="container">
+    <div class="copy">
+      <p>
+        &copy; 2014
+        <script>
+          new Date().getFullYear() > 2010 &&
+            document.write('-' + new Date().getFullYear())
+        </script>
+        , Content By Roc. All Rights Reserved.
+      </p>
+      <!-- <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p> -->
+      
+      <script
+        async
+        src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+      ></script>
+      <p>
+        <span id="busuanzi_container_site_uv"
+          >欢迎你，Roc的第<span id="busuanzi_value_site_uv"></span>位朋友！</span
+        >
+        <span id="busuanzi_container_site_pv"
+          >网站总访问量<span id="busuanzi_value_site_pv"></span>人次</span
+        >
+      </p>
+      
+    </div>
+    <div class="social">
+      <ul>
+        
+        <li>
+          <a href="https://github.com/shenpvip" title="Github" target="_blank"
+            ><i class="icon-github"></i></a
+          >&nbsp;
+        </li>
+            
+        <li>
+          <a href="http://weibo.com/shenpvip" title="Sina-Weibo" target="_blank"
+            ><i class="icon-sina-weibo"></i></a
+          >&nbsp;
+        </li>
+        
+      </ul>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

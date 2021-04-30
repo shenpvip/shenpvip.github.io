@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>npm包管理工具的使用 | ROC&#39;S BLOG</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="ROC'S BLOG">
+    <meta name="author" content="Roc">
+    <meta name="description" content="Tomorrow is another day" />
+    <meta name="keywords" content="" />
+
+    <!-- Site Verification -->
+    <meta name="google-site-verification" content="rLdwH5LrBNt776dG8hn0-hKgHw1zRHW0xNcKVgGrAdw" />
+    <meta name="baidu-site-verification" content="K92LESletm" />
+    <meta name="360-site-verification" content="70d16b5dd18da9212ce9013090edc367" />
+    <meta name="msvalidate.01" content="BCF1684AC274828EE2C1EE2058ECACF1" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="ROC&#39;S BLOG" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+  <!-- Analytics -->
+  
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-109066492-1', 'auto');ga('send', 'pageview');
+</script>
+  
+  
+      <script>
+    var _hmt = _hmt || [];
+    (function() {var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?5e636182d74fd9ac48aefe62cf361064';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/ES6/" class="animsition-link">ES6<small>(6)</small></a></li>
+				    
+				    <li><a href="/categories/blog/" class="animsition-link">blog<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/javascript/" class="animsition-link">javascript<small>(5)</small></a></li>
+				    
+				    <li><a href="/categories/nodejs/" class="animsition-link">nodejs<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/react/" class="animsition-link">react<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/日志/" class="animsition-link">日志<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/移动端/" class="animsition-link">移动端<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/笔记/" class="animsition-link">笔记<small>(10)</small></a></li>
+				    
+				</ul>
+        	</li>
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">tags<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                        
+                    <li><a href="/tags/ES6/" class="animsition-link">ES6<small>(8)</small></a></li>
+                    
+                    <li><a href="/tags/Github-Actions/" class="animsition-link">Github Actions<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/GraphQL/" class="animsition-link">GraphQL<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/Taro-1/" class="animsition-link">Taro 1<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/Taro-3/" class="animsition-link">Taro 3<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/TypeScript/" class="animsition-link">TypeScript<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/antd-mobile/" class="animsition-link">antd-mobile<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/apply/" class="animsition-link">apply<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/bind/" class="animsition-link">bind<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/call/" class="animsition-link">call<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/callee/" class="animsition-link">callee<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/caller/" class="animsition-link">caller<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/centos7/" class="animsition-link">centos7<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/git/" class="animsition-link">git<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/git操作/" class="animsition-link">git操作<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/hexo/" class="animsition-link">hexo<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/linux/" class="animsition-link">linux<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/next/" class="animsition-link">next<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/nodejs/" class="animsition-link">nodejs<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/npm/" class="animsition-link">npm<small>(2)</small></a></li>
+                    
+                    <li><a href="/tags/promise/" class="animsition-link">promise<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/react/" class="animsition-link">react<small>(3)</small></a></li>
+                    
+                    <li><a href="/tags/react-lazy/" class="animsition-link">react.lazy<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/rem布局/" class="animsition-link">rem布局<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/rest运算符/" class="animsition-link">rest运算符<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/setTimeout/" class="animsition-link">setTimeout()<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/vue/" class="animsition-link">vue<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/主题/" class="animsition-link">主题<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/单例模式/" class="animsition-link">单例模式<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/变量的结构赋值/" class="animsition-link">变量的结构赋值<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/字符串/" class="animsition-link">字符串<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/安卓调试/" class="animsition-link">安卓调试<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/对象/" class="animsition-link">对象<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/小程序开发/" class="animsition-link">小程序开发<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/循环/" class="animsition-link">循环<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/微信支付/" class="animsition-link">微信支付<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/心情/" class="animsition-link">心情<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/手写题/" class="animsition-link">手写题<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/扩展运算符/" class="animsition-link">扩展运算符<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/数组/" class="animsition-link">数组<small>(2)</small></a></li>
+                    
+                    <li><a href="/tags/树莓派/" class="animsition-link">树莓派<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/模块化/" class="animsition-link">模块化<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/移动端/" class="animsition-link">移动端<small>(2)</small></a></li>
+                    
+                    <li><a href="/tags/组件模式/" class="animsition-link">组件模式<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/背景/" class="animsition-link">背景<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/设计模式/" class="animsition-link">设计模式<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/遍历/" class="animsition-link">遍历<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/面试/" class="animsition-link">面试<small>(1)</small></a></li>
+                    
+                </ul>
+            </li>
+            
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <!-- <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li> -->
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.jpg" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">ROC'S BLOG</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/shenpvip" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li><a href="http://weibo.com/shenpvip" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2018-10-22T00:31:39.000Z" itemprop="datePublished">
+          2018-10-22
+      </time>
+    
+    
+    | 
+    <a href='/tags/nodejs/'>nodejs</a>,
+    
+    <a href='/tags/npm/'>npm</a>
+    
+    
+</span>
+                <h1>npm包管理工具的使用</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<blockquote>
+<p> 随着nodejs的发展，作为 node 自带的包管理工具的 npm 已经成为每个前端开发者必备的工具。但在日常使用中，往往只停留在npm install，遇到无法解决的问题时，只会删除node_modules 目录然后重新 install ，作为世界上最大规模的包管理系统，还有很多特性和方法需要学习。</p>
+</blockquote>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><blockquote>
+<p>npm（node package manager）node的包管理工具，常见使用场景如下：</p>
+</blockquote>
+<ul>
+<li>允许用户从NPM服务器下载别人编写的第三方包到本地使用。</li>
+<li>允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。</li>
+<li>允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。</li>
+</ul>
+<h3 id="npm-init"><a href="#npm-init" class="headerlink" title="npm init"></a>npm init</h3><p><code>npm init</code> 命令用来初始化一个简单的 package.json 文件，package.json 文件是用来定义一个 package 的描述文件，执行该命令后终端会依次询问 name、version,、description 等字段。</p>
+<p>如果不想手动去输入这些字段，直接采用默认内容，可以在命令后面追加–yes参数，和一路回车效果一样。</p>
+<pre><code>npm init --yes
+</code></pre><h4 id="自定义-npm-init-行为"><a href="#自定义-npm-init-行为" class="headerlink" title="自定义 npm init 行为"></a>自定义 npm init 行为</h4><p>npm init 命令的原理就是调用脚本，输出一个初始化的 package.json 文件。在windows当前用户的目录下创建 .npm-init.js文件</p>
+<blockquote>
+<p>module.exports就是package.json的配置内容，使用prompt()可以获取用户输入</p>
+</blockquote>
+<pre><code>const desc = prompt(&apos;description?&apos;, &apos;A custom template...&apos;)
+const type = prompt(&apos;type?&apos;, &apos;&apos;)
+const user = prompt(&apos;user?&apos;, &apos;test&apos;)
+
+module.exports = {
+  key: &apos;value&apos;,
+  project: {
+    type: type,
+    user: user
+  },
+  name: prompt(&apos;name?&apos;, process.cwd().split(&apos;\\&apos;).pop()),
+  version: prompt(&apos;version?&apos;, &apos;0.1.0&apos;),
+  description: desc,
+  main: &apos;index.js&apos;,
+}
+</code></pre><p>在test目录下执行npm init，得到如下package.json文件</p>
+<pre><code>{
+  &quot;key&quot;: &quot;value&quot;,
+  &quot;project&quot;: {
+    &quot;type&quot;: &quot;&quot;,
+    &quot;user&quot;: &quot;test&quot;
+  },
+  &quot;name&quot;: &quot;test&quot;,
+  &quot;version&quot;: &quot;0.1.0&quot;,
+  &quot;description&quot;: &quot;A custom template...&quot;,
+  &quot;main&quot;: &quot;index.js&quot;
+}
+</code></pre><p>除了生成 package.json，还可以执行node 脚本可以执行的任务。例如通过 fs 创建 README、.eslintrc 等项目必需文件，实现项目脚手架的作用。</p>
+<h3 id="依赖包安装"><a href="#依赖包安装" class="headerlink" title="依赖包安装"></a>依赖包安装</h3><p>npm的核心功能，就是执行 npm install 从 package.json 中的 dependencies、devDependencies 将依赖包安装到当前目录的 ./node_modules 文件夹中。</p>
+<p>默认配置下npm会从默认的源 (Registry) 中查找该包名对应的包地址，并下载安装。除了简单的指定包名，package还可以是一个指向有效包名的http、url/git、url/文件夹路径。</p>
+<h4 id="引用本地模块"><a href="#引用本地模块" class="headerlink" title="引用本地模块"></a>引用本地模块</h4><p>1、在项目根目录创建要引用的模块，customerConfig文件夹，在文件夹内部新建index.js，和package.json文件，package.json文件内容如下：</p>
+<pre><code>{
+    &quot;name&quot;: &quot;customerConfig&quot;,
+    &quot;main&quot;: &quot;index.js&quot;,
+    &quot;version&quot;: &quot;0.1.0&quot;
+}
+</code></pre><p>2、在项目的package.json文件中添加依赖项</p>
+<pre><code>&quot;dependencies&quot;: {
+   &quot;customerConfig&quot;: &quot;file:./customerConfig&quot;
+}
+</code></pre><p>3、执行<code>npm install</code>或者<code>npm install file:./customerConfig</code></p>
+<p>查看 node_modules 目录会发现多出来一个名为customerConfig，指向上层customerConfig文件夹的软链接。这是因为npm识别file:协议的url，得知这个包需要直接从文件系统中获取，会自动创建软链接到 node_modules 中，完成“安装”过程。</p>
+<h4 id="引用私有-git-共享-package"><a href="#引用私有-git-共享-package" class="headerlink" title="引用私有 git 共享 package"></a>引用私有 git 共享 package</h4><p>我们可以把被依赖的包托管在私有的git仓库中，然后将该git url保存到dependencies中，npm会直接调用系统的 git命令从git仓库拉取包的内容到node_modules中。</p>
+<pre><code>&lt;protocol&gt;://[&lt;user&gt;[:&lt;password&gt;]@]&lt;hostname&gt;[:&lt;port&gt;][:][/]&lt;path&gt;[#&lt;commit-ish&gt; | #semver:&lt;semver&gt;]
+</code></pre><p>例如：</p>
+<pre><code>git+ssh://git@github.com:npm/npm.git#v1.0.27
+git+ssh://git@github.com:npm/npm#semver:^5.0
+git+https://isaacs@github.com/npm/npm.git
+git://github.com/npm/npm.git#v1.0.27
+</code></pre><h3 id="npm-script的使用"><a href="#npm-script的使用" class="headerlink" title="npm script的使用"></a>npm script的使用</h3><p>npm 可以在项目package.json里面自定义脚本命令</p>
+<pre><code>// package.json文件
+
+{
+  &quot;script&quot;:{
+    &quot;dev&quot;: &quot;webpack -w&quot;
+  }
+}
+</code></pre><p>package.json文件中的字段script的每一个属性都是一个自定义的脚本命令。</p>
+<p>在命令行中可以通过执行npm run dev来执行这段脚本。</p>
+<h4 id="执行原理"><a href="#执行原理" class="headerlink" title="执行原理"></a>执行原理</h4><p>使用npm run script执行脚本的时候都会创建一个shell，然后在shell中执行指定的脚本。</p>
+<p>这个shell会将当前项目的可执行依赖目录（即node_modules/.bin）添加到环境变量path中，当执行之后之后再恢复原样。就是说脚本命令中的依赖名会直接找到node_modules/.bin下面的对应脚本，而不需要加上路径。</p>
+<h4 id="传参"><a href="#传参" class="headerlink" title="传参"></a>传参</h4><p>向 npm 脚本传入参数，要使用–标明。</p>
+<pre><code>npm run test -- --grep=&quot;pattern&quot;
+</code></pre><p>可以将 –grep=”pattern” 参数传给 test 命令</p>
+<h4 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h4><p>一个npm脚本可以执行多个任务，这些任务之间可以指定不同的执行顺序。</p>
+<pre><code>// &apos;&amp;&apos; 并行执行顺序，同时执行
+&quot;dev&quot;:&quot;node test.js &amp; webpack&quot;
+
+// &apos;&amp;&amp;&apos;继发顺序，执行前面之后才可以执行后面
+&quot;dev&quot;:&quot;node test.js &amp;&amp; webpack&quot;
+</code></pre><h4 id="顺序钩子"><a href="#顺序钩子" class="headerlink" title="顺序钩子"></a>顺序钩子</h4><p>npm脚本自带两个顺序钩子，’pre’ 和 ‘post’</p>
+<pre><code>&quot;predev&quot;:&quot;node test_one.js&quot;,
+&quot;dev&quot;:&quot;node test_two.js&quot;,
+&quot;postdev&quot;:&quot;node test_three.js&quot;
+</code></pre><p>当执行<code>npm run dev</code>的时候默认就会执行</p>
+<pre><code>npm run predev &amp;&amp; npm run dev &amp;&amp; npm run postdev
+</code></pre><h4 id="可以缩写的脚本命令"><a href="#可以缩写的脚本命令" class="headerlink" title="可以缩写的脚本命令"></a>可以缩写的脚本命令</h4><pre><code>npm start === npm run start
+npm stop === npm run stop
+npm test === npm run test
+npm restart === npm run stop &amp;&amp; npm run restart &amp;&amp; npm run start
+</code></pre><h4 id="使用package-json内部变量"><a href="#使用package-json内部变量" class="headerlink" title="使用package.json内部变量"></a>使用package.json内部变量</h4><p>通过npm_package_前缀，npm脚本可以拿到npm的内部变量</p>
+<pre><code>// package.json:
+{
+  &quot;name&quot;:&quot;develop&quot;,
+  &quot;script&quot;:&quot;node test.js&quot;
+}
+
+test.js:
+console.log(process.env.npm_package_name) //develop
+</code></pre>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/articles/设计模式—javascript单例模式.html" style="float: left;">
+        ← 设计模式—javascript单例模式
+    </a>
+    
+    
+    <a class="pull-right" href="/articles/树莓派安装centos7系统.html">
+        树莓派安装centos7系统 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      <!-- ============================ Footer =========================== -->
+
+<footer>
+  <div class="container">
+    <div class="copy">
+      <p>
+        &copy; 2014
+        <script>
+          new Date().getFullYear() > 2010 &&
+            document.write('-' + new Date().getFullYear())
+        </script>
+        , Content By Roc. All Rights Reserved.
+      </p>
+      <!-- <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p> -->
+      
+      <script
+        async
+        src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+      ></script>
+      <p>
+        <span id="busuanzi_container_site_uv"
+          >欢迎你，Roc的第<span id="busuanzi_value_site_uv"></span>位朋友！</span
+        >
+        <span id="busuanzi_container_site_pv"
+          >网站总访问量<span id="busuanzi_value_site_pv"></span>人次</span
+        >
+      </p>
+      
+    </div>
+    <div class="social">
+      <ul>
+        
+        <li>
+          <a href="https://github.com/shenpvip" title="Github" target="_blank"
+            ><i class="icon-github"></i></a
+          >&nbsp;
+        </li>
+            
+        <li>
+          <a href="http://weibo.com/shenpvip" title="Sina-Weibo" target="_blank"
+            ><i class="icon-sina-weibo"></i></a
+          >&nbsp;
+        </li>
+        
+      </ul>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

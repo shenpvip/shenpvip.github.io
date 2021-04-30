@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>GraphQL入门 | ROC&#39;S BLOG</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="ROC'S BLOG">
+    <meta name="author" content="Roc">
+    <meta name="description" content="Tomorrow is another day" />
+    <meta name="keywords" content="" />
+
+    <!-- Site Verification -->
+    <meta name="google-site-verification" content="rLdwH5LrBNt776dG8hn0-hKgHw1zRHW0xNcKVgGrAdw" />
+    <meta name="baidu-site-verification" content="K92LESletm" />
+    <meta name="360-site-verification" content="70d16b5dd18da9212ce9013090edc367" />
+    <meta name="msvalidate.01" content="BCF1684AC274828EE2C1EE2058ECACF1" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="ROC&#39;S BLOG" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+  <!-- Analytics -->
+  
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-109066492-1', 'auto');ga('send', 'pageview');
+</script>
+  
+  
+      <script>
+    var _hmt = _hmt || [];
+    (function() {var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?5e636182d74fd9ac48aefe62cf361064';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/ES6/" class="animsition-link">ES6<small>(6)</small></a></li>
+				    
+				    <li><a href="/categories/blog/" class="animsition-link">blog<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/javascript/" class="animsition-link">javascript<small>(5)</small></a></li>
+				    
+				    <li><a href="/categories/nodejs/" class="animsition-link">nodejs<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/react/" class="animsition-link">react<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/日志/" class="animsition-link">日志<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/移动端/" class="animsition-link">移动端<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/笔记/" class="animsition-link">笔记<small>(10)</small></a></li>
+				    
+				</ul>
+        	</li>
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">tags<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                        
+                    <li><a href="/tags/ES6/" class="animsition-link">ES6<small>(8)</small></a></li>
+                    
+                    <li><a href="/tags/Github-Actions/" class="animsition-link">Github Actions<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/GraphQL/" class="animsition-link">GraphQL<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/Taro-1/" class="animsition-link">Taro 1<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/Taro-3/" class="animsition-link">Taro 3<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/TypeScript/" class="animsition-link">TypeScript<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/antd-mobile/" class="animsition-link">antd-mobile<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/apply/" class="animsition-link">apply<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/bind/" class="animsition-link">bind<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/call/" class="animsition-link">call<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/callee/" class="animsition-link">callee<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/caller/" class="animsition-link">caller<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/centos7/" class="animsition-link">centos7<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/git/" class="animsition-link">git<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/git操作/" class="animsition-link">git操作<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/hexo/" class="animsition-link">hexo<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/linux/" class="animsition-link">linux<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/next/" class="animsition-link">next<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/nodejs/" class="animsition-link">nodejs<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/npm/" class="animsition-link">npm<small>(2)</small></a></li>
+                    
+                    <li><a href="/tags/promise/" class="animsition-link">promise<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/react/" class="animsition-link">react<small>(3)</small></a></li>
+                    
+                    <li><a href="/tags/react-lazy/" class="animsition-link">react.lazy<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/rem布局/" class="animsition-link">rem布局<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/rest运算符/" class="animsition-link">rest运算符<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/setTimeout/" class="animsition-link">setTimeout()<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/vue/" class="animsition-link">vue<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/主题/" class="animsition-link">主题<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/单例模式/" class="animsition-link">单例模式<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/变量的结构赋值/" class="animsition-link">变量的结构赋值<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/字符串/" class="animsition-link">字符串<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/安卓调试/" class="animsition-link">安卓调试<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/对象/" class="animsition-link">对象<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/小程序开发/" class="animsition-link">小程序开发<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/循环/" class="animsition-link">循环<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/微信支付/" class="animsition-link">微信支付<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/心情/" class="animsition-link">心情<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/手写题/" class="animsition-link">手写题<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/扩展运算符/" class="animsition-link">扩展运算符<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/数组/" class="animsition-link">数组<small>(2)</small></a></li>
+                    
+                    <li><a href="/tags/树莓派/" class="animsition-link">树莓派<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/模块化/" class="animsition-link">模块化<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/移动端/" class="animsition-link">移动端<small>(2)</small></a></li>
+                    
+                    <li><a href="/tags/组件模式/" class="animsition-link">组件模式<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/背景/" class="animsition-link">背景<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/设计模式/" class="animsition-link">设计模式<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/遍历/" class="animsition-link">遍历<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/面试/" class="animsition-link">面试<small>(1)</small></a></li>
+                    
+                </ul>
+            </li>
+            
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <!-- <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li> -->
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.jpg" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">ROC'S BLOG</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/shenpvip" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li><a href="http://weibo.com/shenpvip" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2019-03-02T16:36:49.000Z" itemprop="datePublished">
+          2019-03-02
+      </time>
+    
+    
+    | 
+    <a href='/tags/GraphQL/'>GraphQL</a>
+    
+    
+</span>
+                <h1>GraphQL入门</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h3 id="一、什么是GraphQL"><a href="#一、什么是GraphQL" class="headerlink" title="一、什么是GraphQL"></a>一、什么是GraphQL</h3><p>GraphQL 是Facebook开发的API查询语言，而不是一个数据库。</p>
+<p>GraphQL 是基于API之上的一层封装，目的是为了更好，更灵活的适用于业务的需求变化。</p>
+<p>GraphQL 是一套API规范，只要按照规范设计，它可以运行在任何后端框架或者编程语言之上。</p>
+<h3 id="二、为什么使用GraphQL"><a href="#二、为什么使用GraphQL" class="headerlink" title="二、为什么使用GraphQL"></a>二、为什么使用GraphQL</h3><ul>
+<li><p>即使提前跟后端沟通好接口数据字段，实际开发过程中还是会发生接口少字段或多字段</p>
+</li>
+<li><p>多端公用一套数据接口时，数据冗余度高</p>
+</li>
+<li><p>前端的快速产品迭代对API有很大的挑战，改动成本很高</p>
+</li>
+<li><p>GraphQL 查询能够遍历相关对象及其字段，使得客户端可以一次请求查询大量相关数据，而不像传统 RESTful API 架构中那样需要多次往返查询。</p>
+</li>
+</ul>
+<h3 id="三、基本概念"><a href="#三、基本概念" class="headerlink" title="三、基本概念"></a>三、基本概念</h3><ul>
+<li>字段（Fields）</li>
+<li>参数（Arguments）</li>
+<li>操作名称（Operation name）</li>
+<li>变量（Variables）</li>
+</ul>
+<h4 id="1、字段"><a href="#1、字段" class="headerlink" title="1、字段"></a>1、字段</h4><blockquote>
+<p>Field是我们想从服务器获取的对象的基本组成部分。</p>
+</blockquote>
+<pre><code>// 查询语句
+{
+  hello
+  todolist{
+    id
+  }
+}
+
+// 查询结果
+{
+  &quot;data&quot;: {
+    &quot;hello&quot;: &quot;hello world&quot;,
+    &quot;todolist&quot;: [
+      {
+        &quot;id&quot;: &quot;1&quot;
+      },
+      {
+        &quot;id&quot;: &quot;2&quot;
+      }
+    ]
+  }
+}
+</code></pre><p>可以看到查询和其结果拥有一样的结构，这是 GraphQL 最重要的特性，需要什么数据就拿什么数据。</p>
+<p>todolist 返回了一个数组的项目，GraphQL 查询会同等看待单个项目或者一个列表的项目，具体通过 schema 决定</p>
+<h4 id="2、参数"><a href="#2、参数" class="headerlink" title="2、参数"></a>2、参数</h4><blockquote>
+<p>字段可以传递参数，参数是可选的</p>
+</blockquote>
+<pre><code>// 查询语句
+{
+  hello(name:&quot;GraphQL&quot;)
+  todolist{
+    id
+  }
+}
+
+// 查询结果
+{
+  &quot;data&quot;: {
+    &quot;hello&quot;: &quot;hello GraphQL&quot;,
+    &quot;todolist&quot;: [
+      {
+        &quot;id&quot;: &quot;1&quot;
+      },
+      {
+        &quot;id&quot;: &quot;2&quot;
+      }
+    ]
+  }
+}
+</code></pre><p>在RESTful API 的系统中，你只能传递一组简单参数。但是在 GraphQL 中，每一个字段和嵌套对象都能有自己的一组参数，从而使得 GraphQL 可以完美替代多次 API 获取请求。</p>
+<pre><code>// 查询语句
+{
+  hello(name:&quot;GraphQL&quot;)
+  item(id:2){
+    id,
+    item_name,
+    status
+  }
+}
+
+// 查询结果
+{
+  &quot;data&quot;: {
+    &quot;hello&quot;: &quot;hello GraphQL&quot;,
+    &quot;item&quot;: {
+      &quot;id&quot;: &quot;2&quot;,
+      &quot;item_name&quot;: &quot;GraphQl入门&quot;,
+      &quot;status&quot;: true
+    }
+  }
+}
+</code></pre><p>需要注意的是，GraphQL中的字符串需要包装在双引号中。</p>
+<h4 id="3、操作名称"><a href="#3、操作名称" class="headerlink" title="3、操作名称"></a>3、操作名称</h4><blockquote>
+<p>类似函数的名称，使你的操作的有意义和明确的名称</p>
+</blockquote>
+<p>不写默认为query查询</p>
+<p>操作类型的关键字 query 以及操作名称 list</p>
+<pre><code>// 查询语句
+query list{
+  todolist{
+    id,
+    item_name,
+    status
+  }
+}
+
+// 查询结果
+{
+  &quot;data&quot;: {
+    &quot;todolist&quot;: [
+      {
+        &quot;id&quot;: &quot;1&quot;,
+        &quot;item_name&quot;: &quot;深入理解TypeScript&quot;,
+        &quot;status&quot;: false
+      },
+      {
+        &quot;id&quot;: &quot;2&quot;,
+        &quot;item_name&quot;: &quot;GraphQl入门&quot;,
+        &quot;status&quot;: true
+      }
+    ]
+  }
+}
+</code></pre><p>操作名称可以使我们代码减少歧义，方便查错和调试，开发中建议强制书写。</p>
+<p>注意：使用查询简写语法的情况下，你无法为操作提供名称或变量定义。</p>
+<h4 id="4、变量"><a href="#4、变量" class="headerlink" title="4、变量"></a>4、变量</h4><blockquote>
+<p>使用变量来让参数可动态变化，变量以$开头书写</p>
+</blockquote>
+<pre><code>query hello($name: String!) {
+    hello(name: $name)
+}
+</code></pre><p>参数可以拥有默认值：</p>
+<pre><code>query hello($name: String! = &quot;world&quot;) {
+    hello(name: $name)
+}
+</code></pre><h3 id="四、操作类型"><a href="#四、操作类型" class="headerlink" title="四、操作类型"></a>四、操作类型</h3><p>GraphQL的三种操作类型Query、Mutation、Subscription</p>
+<h4 id="Query-查询"><a href="#Query-查询" class="headerlink" title="Query (查询)"></a>Query (查询)</h4><blockquote>
+<p>query是GraphQL 中的获取数据的方式，需要什么数据获取什么数据</p>
+</blockquote>
+<h4 id="Mutation-变更、增删改"><a href="#Mutation-变更、增删改" class="headerlink" title="Mutation (变更、增删改)"></a>Mutation (变更、增删改)</h4><blockquote>
+<p>更改是修改服务器上的数据并获取更新数据的方式</p>
+</blockquote>
+<p>mutation被用以执行写操作，通过mutation我们会给服务器发送请求来修改和更新数据，并且会接收更新的数据。</p>
+<pre><code>// 修改
+mutation updata{
+  updateItem(id: 3, item_name: &quot;小程序IM&quot;, status: true) {
+    id
+    item_name
+    status
+  }
+}
+
+// 返回
+{
+  &quot;data&quot;: {
+    &quot;updateItem&quot;: {
+      &quot;id&quot;: &quot;3&quot;,
+      &quot;item_name&quot;: &quot;小程序IM&quot;,
+      &quot;status&quot;: true
+    }
+  }
+}
+</code></pre><p>为了保证数据的完整性mutation是串形执行，而query可以并行执行。</p>
+<h4 id="Subscription-订阅"><a href="#Subscription-订阅" class="headerlink" title="Subscription (订阅)"></a>Subscription (订阅)</h4><blockquote>
+<p>实时通信业务的需求,可以实现服务端对客户端的实时数据传递</p>
+</blockquote>
+<pre><code>subscription {
+  todolist {
+    id
+    item_name
+    status
+  }
+}
+</code></pre><h3 id="五、Schema（模式）"><a href="#五、Schema（模式）" class="headerlink" title="五、Schema（模式）"></a>五、Schema（模式）</h3><blockquote>
+<p>描述可以查询到的数据的结构</p>
+</blockquote>
+<pre><code>type TodoItem {
+    id: ID!
+    item_name: String!
+    status: Boolean!
+}
+
+type Query {
+    hello(name:String = &quot;world&quot;): String
+    todolist: [TodoItem!]!
+    item(id: ID!): TodoItem!
+}
+
+type Mutation {
+    createItem(id: ID!, item_name: String!, status: Boolean!): TodoItem!
+    updateItem(id: ID!, item_name: String, status: Boolean!): TodoItem!
+    deleteItem(id: ID!): TodoItem!
+}
+</code></pre><p><code>！</code>表示非空 ，<code>[]</code>  列表类型，也就是数组</p>
+<p>每一个 GraphQL 服务都会定义一套类型，用以描述你可能从那个服务查询到的数据。每次查询，服务器就会根据 schema 验证并执行查询。</p>
+<h3 id="六、Type（类型）"><a href="#六、Type（类型）" class="headerlink" title="六、Type（类型）"></a>六、Type（类型）</h3><blockquote>
+<p>类型是 GraphQL 最重要的特性之一</p>
+</blockquote>
+<h4 id="对象类型"><a href="#对象类型" class="headerlink" title="对象类型"></a>对象类型</h4><pre><code>type TodoItem {
+    id: ID!
+    item_name: String!
+    status: Boolean!
+}
+</code></pre><h4 id="标量类型（Scalar-Types）"><a href="#标量类型（Scalar-Types）" class="headerlink" title="标量类型（Scalar Types）"></a>标量类型（Scalar Types）</h4><blockquote>
+<p>GraphQL 查询的叶子节点，没有任何次级字段，类似js中的基本类型</p>
+</blockquote>
+<p>GraphQL 自带一组默认标量类型：</p>
+<ul>
+<li>Int：有符号 32 位整数。</li>
+<li>Float：有符号双精度浮点值。</li>
+<li>String：UTF‐8 字符序列。</li>
+<li>Boolean：true 或者 false。</li>
+<li>ID：ID 标量类型表示一个唯一标识符，通常用以重新获取对象或者作为缓存中的键。ID 类型使用和 String 一样的方式序列化；然而将其定义为 ID 意味着并不需要人类可读型。</li>
+</ul>
+<h4 id="自定义标量"><a href="#自定义标量" class="headerlink" title="自定义标量"></a>自定义标量</h4><pre><code>sclar Date
+</code></pre><p>除了标量类型还有枚举、列表和非空、接口interface、联合类型、输入类型等</p>
+<p>输入对象看上去和常规对象一模一样，除了关键字是 input 而不是 type，输入对象类型的字段当然也不能拥有参数。</p>
+<p>类型系统除了可以让我们清楚的了解获取的数据类型，也可以在请求数据类型出错时，触发一个 GraphQL 执行错误，以让客户端知道发生了错误。而不需要后端去处理这种类型错误</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>网络开销低，可以在单一请求中获取REST中使用多条请求获取的资源</li>
+<li>强类型Schema（约束意味着可以根据规范形成文档、IDE、错误提示等生态工具）</li>
+<li>特别适合图状数据结构的业务场景（比如好友、流程、组织架构等系统）</li>
+</ul>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/articles/TypeScript笔记.html" style="float: left;">
+        ← TypeScript笔记
+    </a>
+    
+    
+    <a class="pull-right" href="/articles/React-lazy懒加载组件.html">
+        React.lazy懒加载组件 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      <!-- ============================ Footer =========================== -->
+
+<footer>
+  <div class="container">
+    <div class="copy">
+      <p>
+        &copy; 2014
+        <script>
+          new Date().getFullYear() > 2010 &&
+            document.write('-' + new Date().getFullYear())
+        </script>
+        , Content By Roc. All Rights Reserved.
+      </p>
+      <!-- <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p> -->
+      
+      <script
+        async
+        src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+      ></script>
+      <p>
+        <span id="busuanzi_container_site_uv"
+          >欢迎你，Roc的第<span id="busuanzi_value_site_uv"></span>位朋友！</span
+        >
+        <span id="busuanzi_container_site_pv"
+          >网站总访问量<span id="busuanzi_value_site_pv"></span>人次</span
+        >
+      </p>
+      
+    </div>
+    <div class="social">
+      <ul>
+        
+        <li>
+          <a href="https://github.com/shenpvip" title="Github" target="_blank"
+            ><i class="icon-github"></i></a
+          >&nbsp;
+        </li>
+            
+        <li>
+          <a href="http://weibo.com/shenpvip" title="Sina-Weibo" target="_blank"
+            ><i class="icon-sina-weibo"></i></a
+          >&nbsp;
+        </li>
+        
+      </ul>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>关于Promise那些事 | ROC&#39;S BLOG</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="ROC'S BLOG">
+    <meta name="author" content="Roc">
+    <meta name="description" content="Tomorrow is another day" />
+    <meta name="keywords" content="" />
+
+    <!-- Site Verification -->
+    <meta name="google-site-verification" content="rLdwH5LrBNt776dG8hn0-hKgHw1zRHW0xNcKVgGrAdw" />
+    <meta name="baidu-site-verification" content="K92LESletm" />
+    <meta name="360-site-verification" content="70d16b5dd18da9212ce9013090edc367" />
+    <meta name="msvalidate.01" content="BCF1684AC274828EE2C1EE2058ECACF1" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="ROC&#39;S BLOG" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+  <!-- Analytics -->
+  
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-109066492-1', 'auto');ga('send', 'pageview');
+</script>
+  
+  
+      <script>
+    var _hmt = _hmt || [];
+    (function() {var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?5e636182d74fd9ac48aefe62cf361064';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/ES6/" class="animsition-link">ES6<small>(6)</small></a></li>
+				    
+				    <li><a href="/categories/blog/" class="animsition-link">blog<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/javascript/" class="animsition-link">javascript<small>(5)</small></a></li>
+				    
+				    <li><a href="/categories/nodejs/" class="animsition-link">nodejs<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/react/" class="animsition-link">react<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/日志/" class="animsition-link">日志<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/移动端/" class="animsition-link">移动端<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/笔记/" class="animsition-link">笔记<small>(10)</small></a></li>
+				    
+				</ul>
+        	</li>
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">tags<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                        
+                    <li><a href="/tags/ES6/" class="animsition-link">ES6<small>(8)</small></a></li>
+                    
+                    <li><a href="/tags/Github-Actions/" class="animsition-link">Github Actions<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/GraphQL/" class="animsition-link">GraphQL<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/Taro-1/" class="animsition-link">Taro 1<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/Taro-3/" class="animsition-link">Taro 3<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/TypeScript/" class="animsition-link">TypeScript<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/antd-mobile/" class="animsition-link">antd-mobile<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/apply/" class="animsition-link">apply<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/bind/" class="animsition-link">bind<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/call/" class="animsition-link">call<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/callee/" class="animsition-link">callee<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/caller/" class="animsition-link">caller<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/centos7/" class="animsition-link">centos7<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/git/" class="animsition-link">git<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/git操作/" class="animsition-link">git操作<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/hexo/" class="animsition-link">hexo<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/linux/" class="animsition-link">linux<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/next/" class="animsition-link">next<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/nodejs/" class="animsition-link">nodejs<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/npm/" class="animsition-link">npm<small>(2)</small></a></li>
+                    
+                    <li><a href="/tags/promise/" class="animsition-link">promise<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/react/" class="animsition-link">react<small>(3)</small></a></li>
+                    
+                    <li><a href="/tags/react-lazy/" class="animsition-link">react.lazy<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/rem布局/" class="animsition-link">rem布局<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/rest运算符/" class="animsition-link">rest运算符<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/setTimeout/" class="animsition-link">setTimeout()<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/vue/" class="animsition-link">vue<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/主题/" class="animsition-link">主题<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/单例模式/" class="animsition-link">单例模式<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/变量的结构赋值/" class="animsition-link">变量的结构赋值<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/字符串/" class="animsition-link">字符串<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/安卓调试/" class="animsition-link">安卓调试<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/对象/" class="animsition-link">对象<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/小程序开发/" class="animsition-link">小程序开发<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/循环/" class="animsition-link">循环<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/微信支付/" class="animsition-link">微信支付<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/心情/" class="animsition-link">心情<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/手写题/" class="animsition-link">手写题<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/扩展运算符/" class="animsition-link">扩展运算符<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/数组/" class="animsition-link">数组<small>(2)</small></a></li>
+                    
+                    <li><a href="/tags/树莓派/" class="animsition-link">树莓派<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/模块化/" class="animsition-link">模块化<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/移动端/" class="animsition-link">移动端<small>(2)</small></a></li>
+                    
+                    <li><a href="/tags/组件模式/" class="animsition-link">组件模式<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/背景/" class="animsition-link">背景<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/设计模式/" class="animsition-link">设计模式<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/遍历/" class="animsition-link">遍历<small>(1)</small></a></li>
+                    
+                    <li><a href="/tags/面试/" class="animsition-link">面试<small>(1)</small></a></li>
+                    
+                </ul>
+            </li>
+            
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <!-- <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li> -->
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.jpg" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">ROC'S BLOG</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/shenpvip" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li><a href="http://weibo.com/shenpvip" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2018-11-04T19:25:32.000Z" itemprop="datePublished">
+          2018-11-04
+      </time>
+    
+    
+    | 
+    <a href='/tags/ES6/'>ES6</a>,
+    
+    <a href='/tags/promise/'>promise</a>
+    
+    
+</span>
+                <h1>关于Promise那些事</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<blockquote>
+<p>Promise 的重要性不用多说, 曾经看到关于 JavaScript 的描述 — JS 的三座大山就是: 原型/作用域/异步, 所以如果说你是一个合格的 JavaScript 程序员, 这三块的内容肯定是要吃透的. 纵观 JavaScript 的异步史, 它经历了 callback -&gt; Promise -&gt; Generator -&gt; async-await 这样一个历程, 前前后后编写异步代码的变化. 从变化中就可以体会到, 确实越来越简洁, 越来越易读. 掌握它们, 你能写出更优雅的代码.</p>
+</blockquote>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>ECMAscript6 原生提供了 Promise 对象, 由浏览器直接支持, 目前大多数浏览器都已经实现了, 低版本浏览器可以使用 es6-promise 库来填平兼容性问题. Promise 最大的好处是把执行代码和处理代码分离开, 使异步操作逻辑更加清晰.</p>
+<h3 id="Promise的特点"><a href="#Promise的特点" class="headerlink" title="Promise的特点"></a>Promise的特点</h3><p>1、对象的状态不受外界影响 Promise 对象代表一个异步操作, 有三种状态:</p>
+<ul>
+<li>pending - 初始状态</li>
+<li>fulfilled - 操作成功完成</li>
+<li>rejected - 操作失败</li>
+</ul>
+<p>2、一旦状态改变, 就不会再发生变化. Promise 对象的状态改变. 只有两种情况: 从 Pending 变为 Resolved 和从 Pending 变为 Rejected. 只要这两种情况发生, 状态就会固定, 不会再变了, 会一直保持这个结果, 与事件不同的是, 就算改变已经发生了, 再对 Promise 对象添加回调函数, 也会立即得到这个结果, 而事件一旦错过再去监听, 就不会得到结果.</p>
+<p><img src="https://user-images.githubusercontent.com/10239097/47963292-f1a0d180-e064-11e8-8bd4-1c9b26ccafc2.png" alt="42730787-1d531df2-8830-11e8-8514-0a810d945440"></p>
+<p>只有异步操作的结果可以决定当前是哪一种状态, 其他操作都不会影响状态改变, 这也是 Promise 最本质的特性, 对于调用者的一种承诺</p>
+<h3 id="Promise-优缺点"><a href="#Promise-优缺点" class="headerlink" title="Promise 优缺点"></a>Promise 优缺点</h3><p>优点:</p>
+<ul>
+<li>可以将异步操作以同步操作的流程表达出来, 避免了层层嵌套的回调函数 Promise</li>
+<li>对象提供统一的接口, 使得控制异步操作更加容易</li>
+</ul>
+<p>缺点:</p>
+<ul>
+<li>无法取消 Promise, 一旦新建它就会立即执行, 无法中途取消</li>
+<li>如果不设置回调函数, Promise 内部抛出的错误, 不会反应到外部</li>
+<li>当处于 Pending 状态时, 无法得知目前进展到哪一个阶段（刚刚开始或者即将完成）</li>
+</ul>
+<h3 id="Promise-prototype-then"><a href="#Promise-prototype-then" class="headerlink" title="Promise.prototype.then"></a>Promise.prototype.then</h3><p>Promise.prototype.then 方法返回的是一个新的 Promise 对象, 因此可以采用链式写法</p>
+<pre><code>ajax(&apos;http://some.api.com/&apos;)
+ .then((json) =&gt; {
+    return json.post;
+ })
+ .then((post) =&gt; {
+    // post 处理
+ });
+</code></pre><p>代码中使用了两个 then 方法, 分别指定了对应的回调参数. 第一个回调函数完成后, 会将返回结果作为参数, 传入第二个 then 中的回调函数执行.</p>
+<pre><code>ajax(&apos;http://some.api.com/&apos;)
+.then((jsonURL) =&gt; {
+  return ajax(jsonURL);
+})
+.then((post) =&gt; {
+  // post 处理
+});
+</code></pre><p>如果第一个回调函数返回的是 Promise 对象, 后一个回调函数会等待该 Promise 对象的运行结果, 等 Promise 运行结果返回, 再进一步调用. 这种设计使得嵌套的异步操作, 可以被很容易得改写, 把回调函数的 “横向发展” 改为了 “向下发展”.</p>
+<h3 id="Promise-prototype-catch"><a href="#Promise-prototype-catch" class="headerlink" title="Promise.prototype.catch"></a>Promise.prototype.catch</h3><p>Promise.prototype.catch 错误捕捉方法是 Promise.prototype.then(null, rejection) 的别名, 用来指定发生错误时的处理函数.</p>
+<pre><code>ajax(&apos;http://some.api.com/&apos;)
+.then((post) =&gt; {
+  throw Error();
+})
+.catch((error) =&gt; {
+  // 捕捉回调函数运行时发生的错误进行处理
+  console.log(&apos;error:&apos; + error);
+});
+</code></pre><p>Promise 对象的错误具有 “冒泡” 性质, 会一直向后传递, 直到被捕获为止.</p>
+<pre><code>ajax(&apos;http://some.api.com/&apos;)
+.then((jsonURL) =&gt; {
+  return ajax(jsonURL);
+})
+.then((comments) =&gt; {
+  throw Error();
+})
+.catch((error) =&gt; {
+  // 处理前两个回调函数的错误
+  console.log(&apos;error:&apos; + error);
+});
+</code></pre><h3 id="Promise-resolve"><a href="#Promise-resolve" class="headerlink" title="Promise.resolve"></a>Promise.resolve</h3><p>Promise.resolve 方法可以将现有对象转为 Promise 对象. 如果 Promise.resolve 方法的参数, 不是 thenable 对象 (具有 then 方法的对象), 则返回一个新的 Promise 对象, 且它的状态为 fulfilled.</p>
+<pre><code>const resolve = Promise.resolve(&apos;promise resolve&apos;);
+
+resolve.then((s) =&gt; {
+  console.log(s);
+});
+
+// output
+promise resolve
+</code></pre><p>如果 Promise 对象的实例状态为 fulfilled, 回调函数会立即执行, Promise.resolve 方法的参数就是回调函数的参数. 如果 Promise.resolve 方法的参数是一个 Promise 对象的实例, 则会返回该 Promise 实例.</p>
+<h3 id="Promise-reject"><a href="#Promise-reject" class="headerlink" title="Promise.reject"></a>Promise.reject</h3><p>Promise.reject(reason) 方法与 resolve 方法类似, 也会返回一个新的 Promise 实例, 但该实例的状态为 rejected. Promise.reject 方法的参数, 会被传递给实例的回调函数.</p>
+<pre><code>const reject = Promise.reject(&apos;promise reject&apos;);
+
+reject.then(null, (err) =&gt; {
+  console.log(err)
+});
+
+// output
+promise reject
+</code></pre><h3 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all"></a>Promise.all</h3><p>Promise.all 方法用于将多个 Promise 实例, 包装成一个新的 Promise 实例, 该方法一般接受一个数组作为参数, 但不一定是数组, 只要具有 iterator 接口. 且返回的每个成员都是 Promise 实例.</p>
+<pre><code>const getRandom = () =&gt; +(Math.random() * 1000).toFixed(0);
+const ajax = (taskID) =&gt; new Promise(resolve =&gt; {
+  let timeout = getRandom();
+  console.log(`taskID=${taskID} start.`);
+  setTimeout(function() {
+    console.log(`taskID=${taskID} finished in time=${timeout}.`);
+    resolve(taskID)
+  }, timeout);
+});
+
+Promise.all([ajax(1), ajax(2), ajax(3)])
+.then(resultList =&gt; {
+  console.log(&apos;results:&apos;, resultList);
+});
+</code></pre><p>输出结果：</p>
+<pre><code>taskID=1 start.
+taskID=2 start.
+taskID=3 start.
+taskID=2 finished in time=27.
+taskID=3 finished in time=257.
+taskID=1 finished in time=876.
+results: [1, 2, 3]
+</code></pre><p>Promise.all 状态分为两种:</p>
+<ul>
+<li>只有 ajax(1)、ajax(2)、ajax(3) 的状态都变成 fulfilled, Promise.all 返回的状态才会变成 fulfilled, 此时 ajax(1)、ajax(2)、ajax(3) 的返回值组成一个数组, 传递给 Promise.all 的回调函数.</li>
+<li>只要 ajax(1)、ajax(2)、ajax(3) 之中有一个是 rejected, Promise.all 返回的状态就变成 rejected, 此时第一个被 reject 的实例的返回值, 会传递给 Promise.all 的回调函数.</li>
+</ul>
+<h3 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race"></a>Promise.race</h3><p>Promise.race 方法也是将多个 Promise 实例, 包装成一个新的 Promise 实例, 与 Promise.all 不同的是一旦有状态改变, 就会返回第一个状态改变的 Promise 实例返回值.</p>
+<pre><code>const getRandom = () =&gt; +(Math.random() * 1000).toFixed(0);
+const ajax = (taskID) =&gt; new Promise(resolve =&gt; {
+  let timeout = getRandom();
+  console.log(`taskID=${taskID} start.`);
+  setTimeout(function() {
+    console.log(`taskID=${taskID} finished in time=${timeout}.`);
+    resolve(taskID)
+  }, timeout);
+});
+
+Promise.race([ajax(1), ajax(2), ajax(3)])
+.then(result =&gt; {
+  console.log(&apos;results:&apos;, result);
+});
+</code></pre><p>输出结果：</p>
+<pre><code>taskID=1 start.
+taskID=2 start.
+taskID=3 start.
+taskID=2 finished in time=59.
+results: 2
+taskID=3 finished in time=707.
+taskID=1 finished in time=854.
+</code></pre><p>Promise.race 虽然返回第一个状态改变的 Promise 实例 , 但不能阻止其他 Promise 实例状态改变.</p>
+<p>如果 Promise.all 和 Promise.race 的参数不是 Promise 实例, 它们就会调用 Promise.resolve 方法, 将参数转为 Promise 实例, 再进一步处理.</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/articles/js中callee、caller、apply、call、bind的用法与区别.html" style="float: left;">
+        ← js中callee、caller、apply、call、bind的用法与区别
+    </a>
+    
+    
+    <a class="pull-right" href="/articles/设计模式—javascript单例模式.html">
+        设计模式—javascript单例模式 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      <!-- ============================ Footer =========================== -->
+
+<footer>
+  <div class="container">
+    <div class="copy">
+      <p>
+        &copy; 2014
+        <script>
+          new Date().getFullYear() > 2010 &&
+            document.write('-' + new Date().getFullYear())
+        </script>
+        , Content By Roc. All Rights Reserved.
+      </p>
+      <!-- <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p> -->
+      
+      <script
+        async
+        src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+      ></script>
+      <p>
+        <span id="busuanzi_container_site_uv"
+          >欢迎你，Roc的第<span id="busuanzi_value_site_uv"></span>位朋友！</span
+        >
+        <span id="busuanzi_container_site_pv"
+          >网站总访问量<span id="busuanzi_value_site_pv"></span>人次</span
+        >
+      </p>
+      
+    </div>
+    <div class="social">
+      <ul>
+        
+        <li>
+          <a href="https://github.com/shenpvip" title="Github" target="_blank"
+            ><i class="icon-github"></i></a
+          >&nbsp;
+        </li>
+            
+        <li>
+          <a href="http://weibo.com/shenpvip" title="Sina-Weibo" target="_blank"
+            ><i class="icon-sina-weibo"></i></a
+          >&nbsp;
+        </li>
+        
+      </ul>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>
